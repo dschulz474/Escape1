@@ -10,3 +10,10 @@ Escape/Content/StarterContent
 
 #VS Generated Files#
 *.VC.db
+*.opensdf
+*.sdf
+Intermediate/
+Saved/
+Binaries/
+*.sln
+*.uproject
