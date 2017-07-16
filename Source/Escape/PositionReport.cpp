@@ -11,7 +11,7 @@ UPositionReport::UPositionReport()
 	// off to improve performance if you don't need them.
 	bWantsBeginPlay = true;
 	PrimaryComponentTick.bCanEverTick = true;
-	
+	UE_LOG(LogTemp, Warning, TEXT("Position Report: Chair"));
 	// ...
 }
 
