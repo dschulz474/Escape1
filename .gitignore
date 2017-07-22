@@ -20,3 +20,6 @@ Binaries/
 *.ini
 *.db-wal
 *.db-shm
+*.config
+*.opendb
+.vs/Escape/v15/ipch/AutoPCH/ESCAPE-d873ea40/OPENDOOR-b554d0e9/OPENDOOR.ipch
