@@ -14,9 +14,11 @@ class ESCAPE_API UOpenDoor : public UActorComponent
 public:	
 	// Sets default values for this component's properties
 	UOpenDoor();
-
+	
 	// Called when the game starts
 	virtual void BeginPlay() override;
+
+	void OpenDoor();
 	
 	// Called every frame
 	virtual void TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction ) override;
@@ -30,5 +32,7 @@ private:
 	
 	UPROPERTY(EditAnywhere)
 		AActor* ActorThatOpens;
+
+	
 	
 };
