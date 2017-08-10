@@ -6,7 +6,8 @@
 */Saved
 *_BuiltData.uasset
 */Saved
-Escape/Content/StarterContent
+Escape1/Content/StarterConetent/Textures
+Escape1/Content/StarterContent/HDRI
 
 #VS Generated Files#
 *.VC.db
@@ -23,3 +24,4 @@ Binaries/
 *.config
 *.opendb
 .vs/Escape/v15/ipch/AutoPCH/ESCAPE-d873ea40/OPENDOOR-b554d0e9/OPENDOOR.ipch
+.vs/
