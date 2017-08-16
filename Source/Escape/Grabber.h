@@ -3,11 +3,16 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "PhysicsEngine/PhysicsHandleComponent.h"
 #include "Components/ActorComponent.h"
 #include "Grabber.generated.h"
 
 
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+
+
+
+
+UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
 class ESCAPE_API UGrabber : public UActorComponent
 {
 	GENERATED_BODY()
@@ -26,6 +31,9 @@ public:
 
 private:
 	float Reach = 100.f;
+	UPhysicsHandleComponent* PhysicsHandle = nullptr;
+	
+	
 		
 	
 };
