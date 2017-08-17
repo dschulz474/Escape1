@@ -26,7 +26,7 @@ void UGrabber::BeginPlay()
 	PhysicsHandle = GetOwner()->FindComponentByClass<UPhysicsHandleComponent>();
 	if (PhysicsHandle)
 	{
-		UE_LOG(LogTemp, Error, TEXT("%s has physics handle"), *GetOwner()->GetName())
+		UE_LOG(LogTemp, Warning, TEXT("%s has physics handle"), *GetOwner()->GetName())
 	}
 	else
 	{
@@ -37,7 +37,9 @@ void UGrabber::BeginPlay()
 	if (InputComponent)
 	{
 		//input handle is found
-		UE_LOG(LogTemp, Error, TEXT("%s has input handle"), *GetOwner()->GetName())
+		UE_LOG(LogTemp, Warning, TEXT("%s has input handle"), *GetOwner()->GetName())
+			//Bind input axis
+			InputComponent->BindAction("Grab", IE_Pressed, this, &UGrabber::Grab);
 	}
 	else
 	{
@@ -46,6 +48,10 @@ void UGrabber::BeginPlay()
 	
 }
 
+void UGrabber::Grab()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Grab Pressed"))
+}
 
 // Called every frame
 void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
@@ -61,9 +67,7 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 	GetWorld()->GetFirstPlayerController()->GetPlayerViewPoint(
 		OUT PlayerViewPointLocation,OUT PlayerViewPointRotation);
 
-	UE_LOG(LogTemp, Warning, TEXT("ViewPoint Location: %s Rotation Direction %s")
-		,*PlayerViewPointLocation.ToString()
-		,*PlayerViewPointRotation.ToString());
+	
 
 	FVector LineTraceEnd = PlayerViewPointLocation + PlayerViewPointRotation.Vector()*Reach;
 	DrawDebugLine(
