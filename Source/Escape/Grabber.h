@@ -36,7 +36,9 @@ private:
 	UInputComponent* InputComponent = nullptr;	
 	//Ray cast and grab in reach of ray
 	void Grab();
-	
+	void UnGrab();
+
+	void PhysicsHandleComponent();
 		
 	
 };
