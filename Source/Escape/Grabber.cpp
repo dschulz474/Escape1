@@ -26,16 +26,23 @@ void UGrabber::BeginPlay()
 	PhysicsHandle = GetOwner()->FindComponentByClass<UPhysicsHandleComponent>();
 	if (PhysicsHandle)
 	{
-		//physics handle is found
+		UE_LOG(LogTemp, Error, TEXT("%s has physics handle"), *GetOwner()->GetName())
 	}
 	else
 	{
 		//handle not found	
-		UE_LOG(LogTemp, Error, TEXT("%s is missing physics"), *GetOwner()->GetName())
+		UE_LOG(LogTemp, Error, TEXT("%s is missing physics handle"), *GetOwner()->GetName())
 	}
-
-
-	// ...
+	InputComponent = GetOwner()->FindComponentByClass<UInputComponent>();
+	if (InputComponent)
+	{
+		//input handle is found
+		UE_LOG(LogTemp, Error, TEXT("%s has input handle"), *GetOwner()->GetName())
+	}
+	else
+	{
+		UE_LOG(LogTemp,Error,TEXT("%s is missing input handle"),*GetOwner()->GetName())
+	}
 	
 }
 
