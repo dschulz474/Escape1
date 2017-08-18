@@ -16,7 +16,7 @@ Escape1/Content/StarterContent/HDRI
 Intermediate/
 Saved/
 Binaries/
-
+*.sln
 
 *.ini
 *.db-wal
