@@ -39,6 +39,13 @@ private:
 	void UnGrab();
 
 	void PhysicsHandleComponent();
-		
+
+	//Setup (assumed) attach input component 
+	void SetupInputComponent();
+	
+	//Return Hit for first physics Body in Reach
+	const FHitResult GetFirstPhysicsBodyInReach();	
+
+
 	
 };
