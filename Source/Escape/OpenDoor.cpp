@@ -11,7 +11,6 @@ UOpenDoor::UOpenDoor()
 	// off to improve performance if you don't need them.
 	bWantsBeginPlay = true;
 	PrimaryComponentTick.bCanEverTick = true;
-
 	// ...
 }
 
@@ -23,24 +22,17 @@ void UOpenDoor::BeginPlay()
 	Owner = GetOwner();
 	
 	ActorThatOpens =	GetWorld()->GetFirstPlayerController()->GetPawn();
-	 
 	// ...
-	
 }
 
 void UOpenDoor::OpenDoor()
 {
-	
-
 	Owner->SetActorRotation(FRotator(0.0f, OpenAngle, 0.0f));//set door rotation
 }
 
 void UOpenDoor::CloseDoor()
 {
-	
-
 	//Create Rotator
-
 	Owner->SetActorRotation(FRotator(0.0f, 0.0f, 0.0f));//set door rotation
 }
 
@@ -48,7 +40,6 @@ void UOpenDoor::CloseDoor()
 void UOpenDoor::TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction )
 {
 	Super::TickComponent( DeltaTime, TickType, ThisTickFunction );
-	
 	//Poll Trigger volume every frame	
 	if (PressurePlate->IsOverlappingActor(ActorThatOpens))
 	{
@@ -60,9 +51,6 @@ void UOpenDoor::TickComponent( float DeltaTime, ELevelTick TickType, FActorCompo
 	{
 		CloseDoor();
 	}
-	
 
-	
-	
 }
 
