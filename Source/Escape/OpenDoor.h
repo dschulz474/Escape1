@@ -36,9 +36,9 @@ private:
 	float LastDoorOpenTime;
 	
 	
-		AActor* ActorThatOpens;
+		
 		AActor* Owner;//Owning Door
-
+		float GetTotalMassOfActorsOnPlate();//Returns total mass in kg
 	
 	
 };
