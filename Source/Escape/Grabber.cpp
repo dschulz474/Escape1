@@ -66,7 +66,7 @@ void UGrabber::PhysicsHandleComponent()
 	
 }
 
-void UGrabber::SetupInputComponent()
+void UGrabber::SetupInputComponent()//binds input to grab
 {
 	InputComponent = GetOwner()->FindComponentByClass<UInputComponent>();
 	if (InputComponent)
@@ -89,7 +89,7 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 
 
 
-	//If Pyhsics hand is attached
+	//If Pyhsics handle is attached
 	if (PhysicsHandle->GrabbedComponent)
 	{
 		//move object we are holding 
@@ -104,7 +104,8 @@ const FHitResult UGrabber::GetFirstPhysicsBodyInReach()
 	FRotator PlayerViewPointRotation;
 
 	GetWorld()->GetFirstPlayerController()->GetPlayerViewPoint(
-		OUT PlayerViewPointLocation, OUT PlayerViewPointRotation);
+		OUT PlayerViewPointLocation, 
+		OUT PlayerViewPointRotation);
 
 
 
@@ -117,14 +118,15 @@ const FHitResult UGrabber::GetFirstPhysicsBodyInReach()
 		OUT HitResult,
 		GetReachLineStart(),
 		GetReachLineEnd(),
-		FCollisionObjectQueryParams(ECollisionChannel::ECC_PhysicsBody)
+		FCollisionObjectQueryParams(ECollisionChannel::ECC_PhysicsBody),
+		TraceParameters
 	);
 	AActor* ActorHit = HitResult.GetActor();
 	
 	return HitResult;
 }
 
-FVector UGrabber::GetReachLineEnd()
+FVector UGrabber::GetReachLineStart()
 {
 	
 	FVector PlayerViewPointLocation;
@@ -135,7 +137,7 @@ FVector UGrabber::GetReachLineEnd()
 
 	return PlayerViewPointLocation;
 }
-FVector UGrabber::GetReachLineStart()
+FVector UGrabber::GetReachLineEnd()
 {
 	
 	FVector PlayerViewPointLocation;
@@ -144,5 +146,5 @@ FVector UGrabber::GetReachLineStart()
 	GetWorld()->GetFirstPlayerController()->GetPlayerViewPoint(
 		OUT PlayerViewPointLocation, OUT PlayerViewPointRotation);
 
-	return PlayerViewPointLocation + PlayerViewPointRotation.Vector()*Reach;
+	return PlayerViewPointLocation + PlayerViewPointRotation.Vector() * Reach;
 }
