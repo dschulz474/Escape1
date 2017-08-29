@@ -31,7 +31,8 @@ void UOpenDoor::BeginPlay()
 
 void UOpenDoor::OpenDoor()
 {
-	Owner->SetActorRotation(FRotator(0.0f, OpenAngle, 0.0f));//set door rotation
+	//Owner->SetActorRotation(FRotator(0.0f, OpenAngle, 0.0f));//set door rotation
+	OnOpenRequest.Broadcast();
 }
 
 void UOpenDoor::CloseDoor()
@@ -63,7 +64,7 @@ float UOpenDoor::GetTotalMassOfActorsOnPlate()
 	//Find all overlapping actors
 	
 	TArray<AActor*> OverlappingActors;
-	if (!PressurePlate) { return; }
+	if (!PressurePlate) { return TotalMass; }
 	PressurePlate->GetOverlappingActors(OUT OverlappingActors);
 
 	for (const auto* Actor : OverlappingActors)
