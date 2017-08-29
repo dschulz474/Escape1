@@ -38,6 +38,7 @@ void UGrabber::Grab()
 
 	if (ActorHit)
 	{
+		if (!PhysicsHandle) { return; }
 		PhysicsHandle->GrabComponent(ComponentToGrab,
 			NAME_None, //No bones
 			ComponentToGrab->GetOwner()->GetActorLocation(), 
@@ -48,16 +49,16 @@ void UGrabber::Grab()
 }
 
 
-void UGrabber::UnGrab()
+void UGrabber::Release()
 {
-	
+	if (!PhysicsHandle) { return;}
 	PhysicsHandle->ReleaseComponent();
 }
 
 void UGrabber::PhysicsHandleComponent()
 {
 	PhysicsHandle = GetOwner()->FindComponentByClass<UPhysicsHandleComponent>();
-
+	
 	if (PhysicsHandle == nullptr)
 	{
 		//handle not found
@@ -72,7 +73,7 @@ void UGrabber::SetupInputComponent()//binds input to grab
 	if (InputComponent)
 	{
 		InputComponent->BindAction("Grab", IE_Pressed, this, &UGrabber::Grab);
-		InputComponent->BindAction("Grab", IE_Released, this, &UGrabber::UnGrab);
+		InputComponent->BindAction("Grab", IE_Released, this, &UGrabber::Release);
 	}
 	else
 	{
@@ -88,7 +89,8 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 
-
+	if (!PhysicsHandle)
+	{return;}
 	//If Pyhsics handle is attached
 	if (PhysicsHandle->GrabbedComponent)
 	{
