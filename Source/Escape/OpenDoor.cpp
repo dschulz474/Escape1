@@ -31,11 +31,7 @@ void UOpenDoor::BeginPlay()
 
 
 
-void UOpenDoor::CloseDoor()
-{
-	//Create Rotator
-	Owner->SetActorRotation(FRotator(0.0f, 0.0f, 0.0f));//set door rotation
-}
+
 
 // Called every frame
 void UOpenDoor::TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction )
@@ -44,13 +40,13 @@ void UOpenDoor::TickComponent( float DeltaTime, ELevelTick TickType, FActorCompo
 	//Poll Trigger volume every frame	
 	if (GetTotalMassOfActorsOnPlate() > TriggerMass)
 	{
-		OnOpenRequest.Broadcast();
+		OnOpen.Broadcast();
 		
 	}
 	//check if its time to close door
 	else
 	{
-		CloseDoor();
+		OnClose.Broadcast();
 	}
 
 }
